@@ -28,12 +28,26 @@ dependencies {
   compile "com.github.bumptech.glide:glide:4.1.1"
 }
 
-apply plugin: 'com.novoda.bintray-release'
-publish {
-  userOrg = 'donglua'
-  groupId = 'me.iwf.photopicker'
-  artifactId = 'PhotoPicker'
-  publishVersion = '0.9.12'
-  desc = 'Photo Picker'
-  website = 'https://github.com/donglua/PhotoPicker'
+//apply plugin: 'com.novoda.bintray-release'
+//publish {
+//  userOrg = 'donglua'
+//  groupId = 'me.iwf.photopicker'
+//  artifactId = 'PhotoPicker'
+//  publishVersion = '0.9.12'
+//  desc = 'Photo Picker'
+//  website = 'https://github.com/donglua/PhotoPicker'
+//}
+def repo = new File(rootDir, "repository")
+
+apply plugin: 'maven'
+
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      repository url: "file://${repo.absolutePath}"
+      pom.version = '0.9.12'
+      pom.groupId = 'jp.daisuke'
+      pom.artifactId = 'PhotoPicker'
+    }
+  }
 }
