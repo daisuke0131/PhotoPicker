@@ -18,6 +18,7 @@ public class PhotoDirectoryLoader extends CursorLoader {
       Media.BUCKET_ID,
       Media.BUCKET_DISPLAY_NAME,
       Media.DATE_ADDED,
+      Media.DATE_TAKEN,
       Media.SIZE
   };
 
@@ -26,7 +27,7 @@ public class PhotoDirectoryLoader extends CursorLoader {
 
     setProjection(IMAGE_PROJECTION);
     setUri(Media.EXTERNAL_CONTENT_URI);
-    setSortOrder(Media.DATE_ADDED + " DESC");
+    setSortOrder(Media.DATE_TAKEN + " DESC");
 
     setSelection(
         MIME_TYPE + "=? or " + MIME_TYPE + "=? or "+ MIME_TYPE + "=? " + (showGif ? ("or " + MIME_TYPE + "=?") : ""));
